@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			html,
+			body {
+				box-sizing: border-box;
+				padding: 30px;
+				width: 100%;
+				height: 100%;
+			}
+
+			body {
+
+				background-image: linear-gradient(to bottom, #eaffd0, #fce38a);
+			}
+
+			@keyframes beat {
+				50% {
+					transform: scale(1.2);
+				}
+			}
+
+			#heart {
+				width: 100px;
+				height: 90px;
+				z-index: 10;
+				animation: beat 1s 1s infinite alternate;
+			}
+
+			#heart,
+			#heart-2,
+			#heart-3 {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+
+			#heart-2 {
+				width: 200px;
+				height: 180px;
+				z-index: 12;
+				animation: beat 1.5s .5s infinite alternate;
+			}
+
+			#heart-3 {
+				margin: auto;
+				width: 400px;
+				height: 360px;
+				animation: beat 2s infinite alternate;
+			}
+
+			#heart::before,
+			#heart::after,
+			#heart-2::before,
+			#heart-2::after,
+			#heart-3::before,
+			#heart-3::after {
+				position: absolute;
+				content: "";
+				background: #ffe2e2;
+				border-radius: 45% 45% 0 0;
+				transform: rotate(-45deg);
+				transform-origin: 0 100%;
+				top: 0;
+			}
+
+			#heart:before,
+			#heart:after {
+				left: 50px;
+				width: 50px;
+				height: 80px;
+			}
+
+			#heart-2::before,
+			#heart-2::after {
+				width: 100px;
+				height: 160px;
+				background-color: #ffc7c7;
+			}
+
+			#heart-3::before,
+			#heart-3::after {
+				width: 200px;
+				height: 320px;
+				background-color: #f38181;
+			}
+
+			#heart:after,
+			#heart-2::after,
+			#heart-3::after {
+				left: 0;
+				transform: rotate(45deg);
+				transform-origin: 100% 100%;
+			}
+
+
+			#heart-2::before {
+				left: 100px;
+				top: 0px;
+			}
+
+			#heart-3::before {
+				left: 200px;
+				top: 0px;
+			}
+
+			#heart.act {
+				animation: beat 1s .25s infinite alternate;
+			}
+
+			#fan-wrap {
+				width: 800px;
+				height: 200px;
+				margin: 20px auto;
+				display: flex;
+				align-items: flex-end;
+				justify-content: space-around;
+			}
+
+			@keyframes fanRoll {
+				from {
+					transform: rotate(0deg);
+				}
+
+				to {
+					transform: rotate(5000deg);
+				}
+			}
+
+			@keyframes roll {
+				from {
+					transform: rotate(0deg);
+				}
+
+				80% {
+					transform: rotate(4800deg);
+				}
+
+				to {
+					transform: translate(100px, -100px);
+
+				}
+			}
+
+			.fan {
+				width: 100px;
+				height: 100px;
+				background: url(./img/fan.png) no-repeat;
+				background-size: contain;
+				transform-origin: center;
+			}
+
+
+			.fan.act {
+				animation: fanRoll 10s .5s forwards;
+			}
+
+			.rotate {
+				width: 0;
+				border: 50px solid transparent;
+				border-bottom: 100px solid pink;
+				position: relative;
+				transform-origin: 50% 70%;
+			}
+
+			.rotate.act {
+				animation: roll 8s 2s forwards;
+			}
+
+
+			.rotate::after {
+				content: "";
+				position: absolute;
+				display: block;
+				border: 50px solid transparent;
+				border-top: 100px solid pink;
+				left: -50px;
+				top: 35px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="heart-3">
+			<div id="heart-2">
+				<div id="heart">
+
+				</div>
+			</div>
+
+		</div>
+		<div id="fan-wrap">
+			<div class="fan">
+			</div>
+			<div class="rotate"></div>
+
+		</div>
+		<script type="text/javascript">
+		
+			document.querySelector(".fan").onclick = function() {
+				this.classList.add("act")
+				document.querySelector(".rotate").classList.add("act")
+			}
+		</script>
+	</body>
+</html>
